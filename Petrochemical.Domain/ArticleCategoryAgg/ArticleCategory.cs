@@ -2,24 +2,27 @@
 
 public class ArticleCategory
 {
-    public long Id { get; }
+    public long Id { get; private set; }
     public string Name { get; private set; }
     public string ImagePath { get; private set; }
     public bool IsRemoved { get; private set; }
 
     public ArticleCategory(string name, string imagePath)
     {
-        GuardAgainstNullName(name);
-
-        Name = name;
-        ImagePath = imagePath;
+        // Create Business
+        SetProperties(name, imagePath);
         IsRemoved = false;
     }
 
     public void Edit(string name, string imagePath)
     {
-        GuardAgainstNullName(name);
+        // Edit Business
+        SetProperties(name, imagePath);
+    }
 
+    public void SetProperties(string name, string imagePath)
+    {
+        GuardAgainstNullName(name);
         Name = name;
 
         if (!string.IsNullOrWhiteSpace(imagePath))
