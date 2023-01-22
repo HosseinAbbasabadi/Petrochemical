@@ -1,6 +1,8 @@
-﻿namespace Petrochemical.ApplicationContracts.ArticleCategory;
+﻿using _0_Framework.Application;
 
-public interface IArticleCategoryQuery
+namespace Petrochemical.ApplicationContracts.ArticleCategory;
+
+public interface IArticleCategoryQuery : IQuery
 {
     List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel searchModel);
     ArticleCategoryOps GetForEdit(long id);

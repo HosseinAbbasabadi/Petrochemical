@@ -1,6 +1,8 @@
-﻿namespace Petrochemical.ApplicationContracts.ArticleCategory;
+﻿using _0_Framework.Application;
 
-public interface IArticleCategoryApplication
+namespace Petrochemical.ApplicationContracts.ArticleCategory;
+
+public interface IArticleCategoryApplication : IApplication
 {
     void Create(ArticleCategoryOps command);
     void Edit(ArticleCategoryOps command);
