@@ -1,0 +1,65 @@
+﻿@page "{id?}"
+@model Petrochemical.Presentation.Web.Areas.Admin.Pages.Blog.ArticleCategory.OpsModel
+@{
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary" data-collapsed="0">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    Article Category Operations
+                </div>
+                <div class="panel-options">
+                    <a
+                        href="#" data-rel="collapse">
+                        <i class="entypo-down-open"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form method="post" role="form" class="form-horizontal form-groups-bordered">
+
+                    <div class="form-group">
+                        <label asp-for="Command.Name" class="col-sm-3 control-label">Name</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" asp-for="Command.Name"
+                                   placeholder="Name" autocomplete="off">
+                            <span class="text-danger" asp-validation-for="Command.Name"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Command.ImagePath" class="col-sm-3 control-label">Image Path</label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control" asp-for="Command.ImagePath"
+                                   placeholder="Image Path" autocomplete="off">
+                            <span class="text-danger" asp-validation-for="Command.ImagePath"></span>
+                        </div>
+                    </div>
+
+                    @if (Model.Command.Id > 0)
+                    {
+                        <input type="hidden" asp-for="Command.Id" value="@Model.Command.Id"/>
+                    }
+
+                    @{
+                        var btnName = "Create";
+                        if (Model.Command.Id > 0)
+                        {
+                            btnName = "Edit";
+                        }
+                    }
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-5">
+                            <button type="submit" class="btn btn-success">
+                                @btnName
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

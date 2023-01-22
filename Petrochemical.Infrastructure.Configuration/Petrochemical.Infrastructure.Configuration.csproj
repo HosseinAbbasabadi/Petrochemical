@@ -14,6 +14,7 @@
     <ProjectReference Include="..\Petrochemical.ApplicationContracts\Petrochemical.ApplicationContracts.csproj" />
     <ProjectReference Include="..\Petrochemical.Application\Petrochemical.Application.csproj" />
     <ProjectReference Include="..\Petrochemical.Infrastructure.EfCore\Petrochemical.Infrastructure.EfCore.csproj" />
+    <ProjectReference Include="..\Petrochemical.Infrastructure.Query\Petrochemical.Infrastructure.Query.csproj" />
   </ItemGroup>
 
 </Project>

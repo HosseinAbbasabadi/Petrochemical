@@ -2,8 +2,8 @@
 
 public interface IArticleCategoryApplication
 {
-    void Create(CreateArticleCategory command);
-    void Edit(EditArticleCategory command);
+    void Create(ArticleCategoryOps command);
+    void Edit(ArticleCategoryOps command);
     void Remove(long id);
     void Restore(long id);
 }

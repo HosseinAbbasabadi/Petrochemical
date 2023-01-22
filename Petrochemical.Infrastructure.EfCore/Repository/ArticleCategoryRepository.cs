@@ -1,4 +1,5 @@
-﻿using Petrochemical.Domain.ArticleCategoryAgg;
+﻿using Microsoft.EntityFrameworkCore;
+using Petrochemical.Domain.ArticleCategoryAgg;
 
 namespace Petrochemical.Infrastructure.EfCore.Repository;
 
@@ -23,7 +24,14 @@ public class ArticleCategoryRepository : IArticleCategoryRepository
 
     public ArticleCategory GetById(long id)
     {
-        return _context.ArticleCategories.First(x => x.Id == id);
+        return _context.ArticleCategories
+            //.AsNoTracking()
+            .First(x => x.Id == id);
+    }
+
+    public void Attach(ArticleCategory entity)
+    {
+        _context.Attach(entity);
     }
 
     public void Commit()

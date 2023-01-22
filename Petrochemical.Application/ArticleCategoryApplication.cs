@@ -12,17 +12,19 @@ public class ArticleCategoryApplication : IArticleCategoryApplication
         _articleCategoryRepository = articleCategoryRepository;
     }
 
-    public void Create(CreateArticleCategory command)
+    public void Create(ArticleCategoryOps command)
     {
         var articleCategory = new ArticleCategory(command.Name, command.ImagePath);
         _articleCategoryRepository.Create(articleCategory);
         _articleCategoryRepository.Commit();
     }
 
-    public void Edit(EditArticleCategory command)
+    public void Edit(ArticleCategoryOps command)
     {
-        var articleCategory = _articleCategoryRepository.GetById(command.Id);
+        var articleCategory = _articleCategoryRepository
+            .GetById(command.Id);
         articleCategory.Edit(command.Name, command.ImagePath);
+        //_articleCategoryRepository.Attach(articleCategory);
         _articleCategoryRepository.Commit();
     }
 

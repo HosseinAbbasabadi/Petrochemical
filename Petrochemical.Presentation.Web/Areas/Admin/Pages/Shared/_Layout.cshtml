@@ -1,12 +1,217 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Neon Admin Panel"/>
+    <meta name="author" content="Laborator.co"/>
+    <link rel="icon" href="~/adminTheme/images/favicon.ico">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141030632-1"></script>
+    <title>Neon</title>
+    <link rel="stylesheet" href="~/adminTheme/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css"
+          id="style-resource-1">
+    <link rel="stylesheet" href="~/adminTheme/css/font-icons/entypo/css/entypo.css" id="style-resource-2">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"
+          id="style-resource-3">
+    <link rel="stylesheet" href="~/adminTheme/css/bootstrap.css" id="style-resource-4">
+    <link rel="stylesheet" href="~/adminTheme/css/neon-core.css" id="style-resource-5">
+    <link rel="stylesheet" href="~/adminTheme/css/neon-theme.css" id="style-resource-6">
+    <link rel="stylesheet" href="~/adminTheme/css/neon-forms.css" id="style-resource-7">
+    <link rel="stylesheet" href="~/adminTheme/css/custom.css" id="style-resource-8">
+    <link rel="stylesheet" href="~/adminTheme/js/datatables/datatables.css" id="style-resource-1">
+    <link rel="stylesheet" href="~/adminTheme/js/select2/select2-bootstrap.css" id="style-resource-1">
+    <link rel="stylesheet" href="~/adminTheme/js/select2/select2.css" id="style-resource-2">
+    <script src="~/adminTheme/js/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="~/adminTheme/css/font-icons/font-awesome/css/font-awesome.min.css"
+          id="style-resource-1">
 </head>
-<body>
-    
+<body class="page-body page-fade">
 
+<div class="page-container">
+    <partial name="_Menu"/>
+    <div class="main-content">
 
-    @await RenderSectionAsync("Scripts", required: false)
+        @if (TempData["errorMessage"] is not null)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger">
+                        <i class="fa fa-bitcoin"></i> @TempData["errorMessage"]
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (TempData["successMessage"] is not null)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-success">
+                        @TempData["successMessage"]
+                    </div>
+                </div>
+            </div>
+        }
+
+        @RenderBody()
+
+        <footer class="main">
+            &copy; 2023 <strong>Neon</strong> Admin Theme by
+            <a href="https://laborator.co/"
+               target="_blank">
+                Laborator
+            </a>
+        </footer>
+    </div>
+
+    <div id="chat" class="fixed" data-current-user="Art Ramadani" data-order-by-status="1"
+         data-max-chat-history="25">
+        <div class="chat-inner">
+            <h2 class="chat-header">
+                <a href="#" class="chat-close">
+                    <i class="entypo-cancel"></i>
+                </a> <i class="entypo-users"></i>
+                Chat
+                <span class="badge badge-success is-hidden">0</span>
+            </h2>
+            <div class="chat-group" id="group-1">
+                <strong>Favorites</strong>
+                <a href="#" id="sample-user-123"
+                   data-conversation-history="#sample_history">
+                    <span class="user-status is-online"></span>
+                    <em>Catherine J. Watkins</em>
+                </a>
+                <a href="#">
+                    <span class="user-status is-online"></span>
+                    <em>Nicholas R. Walker</em>
+                </a>
+                <a href="#">
+                    <span class="user-status is-busy"></span>
+                    <em>
+                        Susan
+                        J. Best
+                    </em>
+                </a>
+                <a href="#">
+                    <span class="user-status is-offline"></span>
+                    <em>
+                        Brandon S.
+                        Young
+                    </em>
+                </a>
+                <a href="#">
+                    <span class="user-status is-idle"></span>
+                    <em>
+                        Fernando G.
+                        Olson
+                    </em>
+                </a>
+            </div>
+            <div class="chat-group" id="group-2">
+                <strong>Work</strong>
+                <a href="#">
+                    <span class="user-status is-offline"></span> <em>Robert J. Garcia</em>
+                </a>
+                <a href="#"
+                   data-conversation-history="#sample_history_2">
+                    <span class="user-status is-offline"></span>
+                    <em>Daniel A. Pena</em>
+                </a>
+                <a href="#">
+                    <span class="user-status is-busy"></span>
+                    <em>
+                        Rodrigo E.
+                        Lozano
+                    </em>
+                </a>
+            </div>
+            <div class="chat-group" id="group-3">
+                <strong>Social</strong>
+                <a href="#">
+                    <span class="user-status is-busy"></span> <em>Velma G. Pearson</em>
+                </a>
+                <a href="#">
+                    <span class="user-status is-offline"></span> <em>Margaret R. Dedmon</em>
+                </a>
+                <a href="#">
+                    <span class="user-status is-online"></span> <em>Kathleen M. Canales</em>
+                </a>
+                <a href="#">
+                    <span class="user-status is-offline"></span> <em>Tracy J. Rodriguez</em>
+                </a>
+            </div>
+        </div>
+        <div class="chat-conversation">
+            <div class="conversation-header">
+                <a href="#" class="conversation-close">
+                    <i class="entypo-cancel"></i>
+                </a> <span class="user-status"></span> <span class="display-name"></span> <small></small>
+            </div>
+            <ul class="conversation-body"> </ul>
+            <div class="chat-textarea">
+                <textarea class="form-control autogrow"
+                              placeholder="Type your message"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <ul class="chat-history" id="sample_history">
+        <li>
+            <span class="user">Art Ramadani</span>
+            <p>Are you here?</p> <span class="time">09:00</span>
+        </li>
+        <li class="opponent">
+            <span class="user">Catherine J. Watkins</span>
+            <p>This message is pre-queued.</p> <span class="time">09:25</span>
+        </li>
+        <li class="opponent">
+            <span class="user">Catherine J. Watkins</span>
+            <p>Whohoo!</p> <span class="time">09:26</span>
+        </li>
+        <li class="opponent unread">
+            <span class="user">Catherine J. Watkins</span>
+            <p>Do you like it?</p> <span class="time">09:27</span>
+        </li>
+    </ul>
+
+    <ul class="chat-history" id="sample_history_2">
+        <li class="opponent unread">
+            <span class="user">Daniel A. Pena</span>
+            <p>I am going out.</p> <span class="time">08:21</span>
+        </li>
+        <li class="opponent unread">
+            <span class="user">Daniel A. Pena</span>
+            <p>Call me when you see this message.</p> <span class="time">08:27</span>
+        </li>
+    </ul>
+</div>
+
+<link rel="stylesheet" href="~/adminTheme/js/jvectormap/jquery-jvectormap-1.2.2.css" id="style-resource-1">
+<link rel="stylesheet" href="~/adminTheme/js/rickshaw/rickshaw.min.css" id="style-resource-2">
+<script src="~/adminTheme/js/gsap/TweenMax.min.js" id="script-resource-1"></script>
+<script src="~/adminTheme/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js" id="script-resource-2"></script>
+<script src="~/adminTheme/js/bootstrap.js" id="script-resource-3"></script>
+<script src="~/adminTheme/js/joinable.js" id="script-resource-4"></script>
+<script src="~/adminTheme/js/resizeable.js" id="script-resource-5"></script>
+<script src="~/adminTheme/js/neon-api.js" id="script-resource-6"></script>
+<script src="~/adminTheme/js/cookies.min.js" id="script-resource-7"></script>
+<script src="~/adminTheme/js/jvectormap/jquery-jvectormap-1.2.2.min.js" id="script-resource-8"></script>
+<script src="~/adminTheme/js/jvectormap/jquery-jvectormap-europe-merc-en.js" id="script-resource-9"></script>
+<script src="~/adminTheme/js/jquery.sparkline.min.js" id="script-resource-10"></script>
+<script src="~/adminTheme/js/rickshaw/vendor/d3.v3.js" id="script-resource-11"></script>
+<script src="~/adminTheme/js/rickshaw/rickshaw.min.js" id="script-resource-12"></script>
+<script src="~/adminTheme/js/raphael-min.js" id="script-resource-13"></script>
+<script src="~/adminTheme/js/morris.min.js" id="script-resource-14"></script>
+<script src="~/adminTheme/js/toastr.js" id="script-resource-15"></script>
+<script src="~/adminTheme/js/neon-chat.js" id="script-resource-16"></script>
+<script src="~/adminTheme/js/neon-custom.js" id="script-resource-17"></script>
+<script src="~/adminTheme/js/neon-demo.js" id="script-resource-18"></script>
+<script src="~/adminTheme/js/neon-skins.js" id="script-resource-19"></script>
+<script src="~/adminTheme/js/datatables/datatables.js" id="script-resource-8"></script>
+<script src="~/adminTheme/js/select2/select2.min.js" id="script-resource-8"></script>
+<partial name="_ValidationScriptsPartial"/>
+
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
