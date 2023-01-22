@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using _0_Framework.Application;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Petrochemical.ApplicationContracts.ArticleCategory;
 
@@ -23,18 +24,19 @@ public class OpsModel : PageModel
 
     public IActionResult OnPost()
     {
-        if (ModelState.IsValid)
-        {
-            if (Command.Id > 0)
-                _articleCategoryApplication.Edit(Command);
-            else
-                _articleCategoryApplication.Create(Command);
+        var result = new OperationResult();
+        if (Command.Id > 0)
+            _articleCategoryApplication.Edit(Command);
+        else
+            result = _articleCategoryApplication.Create(Command);
 
-            TempData["successMessage"] = "Operation Done Successfully.";
-            return RedirectToPage("./Index");
+        if (!result.IsSucceeded)
+        {
+            TempData["errorMessage"] = result.Message;
+            return Page();
         }
 
-        TempData["errorMessage"] = "Error! Please try again.";
-        return Page();
+        TempData["successMessage"] = result.Message;
+        return RedirectToPage("./Index");
     }
 }

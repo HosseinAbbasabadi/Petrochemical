@@ -1,23 +1,37 @@
-﻿using Petrochemical.ApplicationContracts.ArticleCategory;
+﻿using _0_Framework.Application;
+using Petrochemical.ApplicationContracts;
+using Petrochemical.ApplicationContracts.ArticleCategory;
 using Petrochemical.Domain.ArticleCategoryAgg;
+using Petrochemical.Domain.ArticleCategoryAgg.Service;
 
 namespace Petrochemical.Application;
 
 public class ArticleCategoryApplication : IArticleCategoryApplication
 {
+    private const string TableName = "ArticleCategory";
     private readonly IArticleCategoryRepository _articleCategoryRepository;
+    private readonly IArticleCategoryService _articleCategoryService;
 
-    public ArticleCategoryApplication(IArticleCategoryRepository articleCategoryRepository)
+    public ArticleCategoryApplication(IArticleCategoryRepository articleCategoryRepository,
+        IArticleCategoryService articleCategoryService)
     {
         _articleCategoryRepository = articleCategoryRepository;
+        _articleCategoryService = articleCategoryService;
     }
 
-    public void Create(ArticleCategoryOps command)
+    public OperationResult Create(ArticleCategoryOps command)
     {
-        var articleCategory = new ArticleCategory(command.Name, command.ImagePath);
+        var operation = new OperationResult(TableName).IsCreate();
 
+        if (_articleCategoryService.IsNameDuplicated(command.Name))
+            return operation.Failure(ApplicationMessages.DuplicatedError);
+
+        var articleCategory = new ArticleCategory(command.Name, command.ImagePath);
         _articleCategoryRepository.Create(articleCategory);
         _articleCategoryRepository.CommitTransaction();
+
+        return operation.SetId(articleCategory.Id)
+            .Success();
     }
 
     public void Edit(ArticleCategoryOps command)

@@ -5,6 +5,7 @@ using Petrochemical.Application;
 using Petrochemical.Infrastructure.EfCore;
 using Petrochemical.Infrastructure.Query;
 using Microsoft.Extensions.DependencyInjection;
+using Petrochemical.Domain.ArticleCategoryAgg.Service;
 using Petrochemical.Infrastructure.EfCore.Repository;
 
 namespace Petrochemical.Infrastructure.Configuration;
@@ -28,6 +29,12 @@ public class PetrochemicalModule
         services.Scan(scan => scan
             .FromAssemblyOf<ArticleCategoryQuery>()
             .AddClasses(x => x.AssignableTo(typeof(IQuery)))
+            .AsImplementedInterfaces()
+            .WithTransientLifetime());
+
+        services.Scan(scan => scan
+            .FromAssemblyOf<ArticleCategoryService>()
+            .AddClasses(x => x.AssignableTo(typeof(IDomainService)))
             .AsImplementedInterfaces()
             .WithTransientLifetime());
 
