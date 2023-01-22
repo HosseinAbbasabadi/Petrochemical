@@ -15,30 +15,31 @@ public class ArticleCategoryApplication : IArticleCategoryApplication
     public void Create(ArticleCategoryOps command)
     {
         var articleCategory = new ArticleCategory(command.Name, command.ImagePath);
+
         _articleCategoryRepository.Create(articleCategory);
-        _articleCategoryRepository.Commit();
+        _articleCategoryRepository.CommitTransaction();
     }
 
     public void Edit(ArticleCategoryOps command)
     {
         var articleCategory = _articleCategoryRepository
-            .GetById(command.Id);
+            .Get(command.Id);
         articleCategory.Edit(command.Name, command.ImagePath);
         //_articleCategoryRepository.Attach(articleCategory);
-        _articleCategoryRepository.Commit();
+        _articleCategoryRepository.CommitTransaction();
     }
 
     public void Remove(long id)
     {
-        var articleCategory = _articleCategoryRepository.GetById(id);
+        var articleCategory = _articleCategoryRepository.Get(id);
         articleCategory.Removed();
-        _articleCategoryRepository.Commit();
+        _articleCategoryRepository.CommitTransaction();
     }
 
     public void Restore(long id)
     {
-        var articleCategory = _articleCategoryRepository.GetById(id);
+        var articleCategory = _articleCategoryRepository.Get(id);
         articleCategory.Restore();
-        _articleCategoryRepository.Commit();
+        _articleCategoryRepository.CommitTransaction();
     }
 }

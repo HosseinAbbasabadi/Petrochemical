@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Petrochemical.Presentation.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Petrochemical.Infrastructure.Configuration", "Petrochemical.Infrastructure.Configuration\Petrochemical.Infrastructure.Configuration.csproj", "{F42B2B01-FF1E-4419-BE49-87452F75F390}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Petrochemical.Infrastructure.Query", "Petrochemical.Infrastructure.Query\Petrochemical.Infrastructure.Query.csproj", "{F65D14EF-E7D2-4F16-BDB9-B82D93BAE8C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Petrochemical.Infrastructure.Query", "Petrochemical.Infrastructure.Query\Petrochemical.Infrastructure.Query.csproj", "{F65D14EF-E7D2-4F16-BDB9-B82D93BAE8C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "0_Framework", "0_Framework\0_Framework.csproj", "{6AD89BD5-438F-4301-A2FA-F82C3C1119BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{F65D14EF-E7D2-4F16-BDB9-B82D93BAE8C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F65D14EF-E7D2-4F16-BDB9-B82D93BAE8C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F65D14EF-E7D2-4F16-BDB9-B82D93BAE8C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AD89BD5-438F-4301-A2FA-F82C3C1119BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AD89BD5-438F-4301-A2FA-F82C3C1119BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AD89BD5-438F-4301-A2FA-F82C3C1119BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AD89BD5-438F-4301-A2FA-F82C3C1119BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

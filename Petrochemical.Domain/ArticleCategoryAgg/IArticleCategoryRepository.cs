@@ -1,9 +1,7 @@
-﻿namespace Petrochemical.Domain.ArticleCategoryAgg;
+﻿using _0_Framework.Domain;
 
-public interface IArticleCategoryRepository
+namespace Petrochemical.Domain.ArticleCategoryAgg;
+
+public interface IArticleCategoryRepository : IRepository<long, ArticleCategory>
 {
-    void Create(ArticleCategory entity);
-    List<ArticleCategory> GetAll();
-    ArticleCategory GetById(long id);
-    void Commit();
 }
