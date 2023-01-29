@@ -1,6 +1,12 @@
 ﻿@model Petrochemical.ApplicationContracts.ArticleCategory.ArticleCategoryOps
 
-<form method="post">
+<form asp-page="./Index" asp-page-handler="Operations"
+      method="post"
+      data-ajax="true"
+      data-callback=""
+      data-action="RefereshList"
+      data-refereshurl="@Url.Page("./Index", "List")"
+      data-refereshdiv="#list">
     <div class="modal-header">
         @if (Model.Id > 0)
         {

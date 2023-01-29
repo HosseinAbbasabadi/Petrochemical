@@ -113,7 +113,7 @@ function CallBackHandler(data, action, form) {
             alert(data.Message);
             break;
         case "Refresh":
-            if (data.isSucceded) {
+            if (data.isSucceeded) {
                 window.location.reload();
             } else {
                 alert(data.message);
@@ -142,6 +142,6 @@ function get(url, refereshDiv) {
     $.get(url,
         searchModel,
         function (result) {
-            $(`#${refereshDiv}`).html(result);
+            $(refereshDiv).html(result);
         });
 }

@@ -28,6 +28,12 @@ public class IndexModel : PageModel
         List = _articleCategoryQuery.Search(searchModel);
     }
 
+    public IActionResult OnGetList()
+    {
+        var list = _articleCategoryQuery.Search(new ArticleCategorySearchModel());
+        return Partial("./List", list);
+    }
+
     public IActionResult OnGetOperations(int id)
     {
         var command = new ArticleCategoryOps();
@@ -44,19 +50,12 @@ public class IndexModel : PageModel
     //    return RedirectToPage("./Ops", new { id });
     //}
 
-    public IActionResult OnPost()
+    public IActionResult OnPostOperations()
     {
         var result = CreateCommand.Id > 0
             ? _articleCategoryApplication.Edit(CreateCommand)
             : _articleCategoryApplication.Create(CreateCommand);
 
-        if (!result.IsSucceeded)
-        {
-            TempData["errorMessage"] = result.Message;
-            return Page();
-        }
-
-        TempData["successMessage"] = result.Message;
-        return RedirectToPage("./Index");
+        return new JsonResult(result);
     }
 }

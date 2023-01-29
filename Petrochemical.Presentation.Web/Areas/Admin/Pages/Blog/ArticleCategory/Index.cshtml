@@ -51,66 +51,8 @@
         </div>
     </div>
 
-    <div class="col-md-12">
-        <div class="card" data-collapsed="0">
-            <div class="card-header">
-                <div class="card-title">
-                    @pageName List
-                </div>
-            </div>
-            <div class="card-body">
-
-                <table class="table table-bordered datatable" id="table-1">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>Operations</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (var item in Model.List)
-                    {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.ImagePath</td>
-                            <td>@item.Name</td>
-                            <td>
-                                @if (item.IsRemoved)
-                                {
-                                    <span class="text-danger">Inactive</span>
-                                }
-                                else
-                                {
-                                    <span class="text-success">active</span>
-                                }
-                            </td>
-                            <td>
-                                    <a href="#showmodal=@Url.Page("./Index", "Operations", new {id = item.Id})" class="btn btn-primary btn-sm">
-                                    Edit
-                                </a>
-                                @if (item.IsRemoved)
-                                {
-                                    <a href="#" class="btn btn-success btn-sm">
-                                        Restore
-                                    </a>
-                                }
-                                else
-                                {
-                                    <a href="#" class="btn btn-danger btn-sm">
-                                        Remove
-                                    </a>
-                                }
-                            </td>
-                        </tr>
-                    }
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
+    <div class="col-md-12" id="list">
+        <partial name="List" model="Model.List"/>
     </div>
 
 </div>
