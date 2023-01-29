@@ -34,13 +34,17 @@ public class ArticleCategoryApplication : IArticleCategoryApplication
             .Success();
     }
 
-    public void Edit(ArticleCategoryOps command)
+    public OperationResult Edit(ArticleCategoryOps command)
     {
+        var operation = new OperationResult();
+
         var articleCategory = _articleCategoryRepository
             .Get(command.Id);
         articleCategory.Edit(command.Name, command.ImagePath);
         //_articleCategoryRepository.Attach(articleCategory);
         _articleCategoryRepository.CommitTransaction();
+
+        return operation.Success();
     }
 
     public void Remove(long id)
