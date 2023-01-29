@@ -1,4 +1,6 @@
+using _0_Framework.Infrastructure;
 using Petrochemical.Infrastructure.Configuration;
+using System.Data.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +9,7 @@ builder.Services.AddRazorPages();
 
 var connectionString = builder.Configuration.GetConnectionString("Petro");
 PetrochemicalModule.Config(builder.Services, connectionString);
+FrameworkModule.Config(builder.Services);
 
 var app = builder.Build();
 

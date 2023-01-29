@@ -7,6 +7,7 @@ using Petrochemical.Infrastructure.Query;
 using Microsoft.Extensions.DependencyInjection;
 using Petrochemical.Domain.ArticleCategoryAgg.Service;
 using Petrochemical.Infrastructure.EfCore.Repository;
+using System.Data.Common;
 
 namespace Petrochemical.Infrastructure.Configuration;
 

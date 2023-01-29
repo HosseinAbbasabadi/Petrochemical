@@ -1,4 +1,5 @@
-﻿using Petrochemical.Infrastructure.EfCore;
+﻿using _0_Framework.Infrastructure;
+using Petrochemical.Infrastructure.EfCore;
 using Petrochemical.ApplicationContracts.ArticleCategory;
 
 namespace Petrochemical.Infrastructure.Query;
@@ -6,10 +7,12 @@ namespace Petrochemical.Infrastructure.Query;
 public class ArticleCategoryQuery : IArticleCategoryQuery
 {
     private readonly PetroContext _petroContext;
+    private readonly BaseDapperRepository _dapperRepository;
 
-    public ArticleCategoryQuery(PetroContext petroContext)
+    public ArticleCategoryQuery(PetroContext petroContext, BaseDapperRepository dapperRepository)
     {
         _petroContext = petroContext;
+        _dapperRepository = dapperRepository;
     }
 
     public List<ArticleCategoryViewModel> Search(ArticleCategorySearchModel searchModel)
@@ -20,7 +23,8 @@ public class ArticleCategoryQuery : IArticleCategoryQuery
                 Id = x.Id,
                 Name = x.Name,
                 ImagePath = x.ImagePath,
-                IsRemoved = x.IsRemoved
+                IsRemoved = x.IsRemoved,
+                RemoveState = x.IsRemoved.IndicateRemoveState()
             });
 
         if (searchModel.Id > 0)
@@ -40,12 +44,16 @@ public class ArticleCategoryQuery : IArticleCategoryQuery
 
     public ArticleCategoryOps GetForEdit(long id)
     {
-        return _petroContext.ArticleCategories
-            .Select(x => new ArticleCategoryOps
-            {
-                Id = x.Id,
-                Name = x.Name,
-                ImagePath = x.ImagePath
-            }).First(x => x.Id == id);
+        //_dapperRepository.SelectFromSp<ArticleCategoryOps>("EXAMPLE_PROCEDURE", new { Id = id });
+        return _dapperRepository.SelectFirstOrDefault<ArticleCategoryOps>(
+            @$"SELECT Id, Name, ImagePath FROM tbArticleCategory WHERE ID = {id}");
+
+        //return _petroContext.ArticleCategories
+        //    .Select(x => new ArticleCategoryOps
+        //    {
+        //        Id = x.Id,
+        //        Name = x.Name,
+        //        ImagePath = x.ImagePath
+        //    }).First(x => x.Id == id);
     }
 }

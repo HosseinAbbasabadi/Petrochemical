@@ -1,9 +1,6 @@
-using _0_Framework.Application;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Petrochemical.Application;
 using Petrochemical.ApplicationContracts.ArticleCategory;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Petrochemical.Presentation.Web.Areas.Admin.Pages.Blog.ArticleCategory;
 

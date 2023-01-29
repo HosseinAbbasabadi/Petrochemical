@@ -6,4 +6,5 @@ public class ArticleCategoryViewModel
     public string Name { get; set; }
     public string ImagePath { get; set; }
     public bool IsRemoved { get; set; }
+    public string RemoveState { get; set; }
 }
